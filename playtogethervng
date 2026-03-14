@@ -1,0 +1,195 @@
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice - Play Together</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <style>
+        /* KHAI BÁO FONT SRN COOKIERUN - Đảm bảo file .ttf nằm cùng thư mục */
+        @font-face {
+            font-family: 'CookieRun';
+            src: url('SRN CookieRun Regular.ttf') format('truetype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'CookieRun';
+            src: url('SRN CookieRun Bold.ttf') format('truetype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'CookieRun';
+            src: url('SRN CookieRun Black.ttf') format('truetype');
+            font-weight: 900;
+        }
+
+        body { 
+            background-color: #f8f9fa; 
+            margin: 0;
+            font-family: 'CookieRun', sans-serif; 
+            padding-top: 55px;
+        }
+
+        .navbar {
+            height: 50px; background: #fff !important;
+            border-bottom: 1px solid #dee2e6;
+            display: flex; justify-content: center;
+        }
+        .navbar-brand { font-weight: bold; color: #555 !important; font-size: 1.1rem; margin: 0 auto; }
+
+        /* Slider Wrapper */
+        .img-slide-wrapper { margin-top: 10px; max-width: 1140px; position: relative; }
+        
+        .swiper { 
+            width: 100%;
+            background-color: #f0f0f0; /* Nền xám nhạt để biết slide đang load */
+        }
+
+        /* Thẻ A bọc ngoài Slide */
+        .swiper-slide { 
+            position: relative; 
+            display: block !important; 
+            text-decoration: none; 
+            color: inherit;
+            overflow: hidden;
+        }
+
+        /* Đảm bảo ảnh luôn hiển thị đúng tỉ lệ */
+        .swiper-slide img { 
+            width: 100%; 
+            height: auto; 
+            display: block;
+            min-height: 200px; /* Tránh slide bị xẹp lép */
+        }
+
+        /* Tags - Chữ vàng chuẩn, không bóng đen */
+        .hg-badge {
+            position: absolute; top: 0; left: 0;
+            padding: 6px 22px; font-weight: 900; font-size: 22px;
+            color: #FFEB3B; z-index: 10;
+        }
+        .hg-badge.event { background-color: #A331FB; }
+        .hg-badge.new { background-color: #4CAF50; }
+        .hg-badge.sale { background-color: #FF3B30; }
+
+        /* Tiêu đề dưới ảnh */
+        .title-area {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 20px 25px 35px 25px; pointer-events: none;
+        }
+        .swiper-title {
+            font-size: 32px; font-weight: 900; margin: 0; color: #fff;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+        }
+        .swiper-sub-title {
+            font-size: 15px; font-weight: normal; margin-top: 5px; color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .sudo-btn {
+            position: absolute; bottom: 30px; right: 25px; background: #fff;
+            color: #333; padding: 8px 25px; border-radius: 30px;
+            font-weight: 900; font-size: 18px; box-shadow: 0 4px 0 #999; z-index: 20;
+        }
+
+        .slide-counter {
+            position: absolute; top: 15px; right: 15px; z-index: 10;
+            background: rgba(0,0,0,0.6); color: white;
+            padding: 4px 15px; border-radius: 20px; font-size: 15px;
+        }
+
+        /* News List */
+        .list-group-item {
+            padding: 15px 20px; font-size: 15px; color: #333;
+            text-decoration: none; display: flex; justify-content: space-between;
+        }
+        .list-group-item:hover { background: #f1f1f1; }
+        
+        .old-news { display: none; }
+        #btn-more { cursor: pointer; font-weight: bold; justify-content: center; color: #888; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-light fixed-top">
+        <span class="navbar-brand">Notice</span>
+    </nav>
+
+    <div class="container-lg img-slide-wrapper">
+        <div class="swiper swiper-initialized swiper-horizontal swiper-autoheight swiper-backface-hidden" id="img-slide">
+            <div class="swiper-wrapper" id="swiper-wrapper-d36b4e535ca31d3c" aria-live="off" style="height: 525px; transition-duration: 0ms; transform: translate3d(-934px, 0px, 0px); transition-delay: 0ms;">
+                
+                
+
+                
+
+            <a href="#" class="swiper-slide swiper-slide-next swiper-slide-prev" role="group" aria-label="2 / 2" data-swiper-slide-index="1" style="width: 934px;">
+                    <div class="hg-badge event">EVENT</div>
+                    <img src="https://cdn.playtogether.haegin.co.kr/prod/1770189056_19adf1ad90cb4ac6820157eb0a14b77b" alt="Sự kiện tiên hoa">
+                    <div class="title-area">
+                        <h1 class="swiper-title">Sự kiện tiên hoa</h1>
+                        <h2 class="swiper-sub-title">Tham gia nhận quà giới hạn cực hiếm.</h2>
+                    </div>
+                    <div class="sudo-btn">ĐI NGAY</div>
+                </a><a href="#" class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 2" data-swiper-slide-index="0" style="width: 934px;">
+                    <div class="hg-badge new">NEW</div>
+                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/260314_01.png" alt="Sự kiện mới">
+                    <div class="title-area">
+                        <h1 class="swiper-title">Nội dung mới cập nhật</h1>
+                        <h2 class="swiper-sub-title">Khám phá ngay những tính năng vừa ra mắt!</h2>
+                    </div>
+                    <div class="sudo-btn">ĐI NGAY</div>
+                </a></div>
+            <div class="slide-counter"><span id="curr">1</span> / <span id="total">0</span></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+    </div>
+
+    <main class="container-lg pb-5 mt-2">
+        <div class="list-group list-group-flush border-bottom">
+            <a href="#" class="list-group-item">
+                <div>[Thông báo] Cập nhật phiên bản 2026</div>
+                <small class="text-secondary">2026-03-14(UTC)</small>
+            </a>
+            <div class="old-news" id="old-news-box" style="display: block;">
+                <a href="#" class="list-group-item">
+                    <div>[Sự kiện] Kết thúc thử thách bé ngoan</div>
+                    <small class="text-secondary">2026-03-01(UTC)</small>
+                </a>
+            </div>
+            <div class="list-group-item" id="btn-more">△ Show Less △</div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoHeight: true, /* Tự động chỉnh độ cao theo ảnh */
+            speed: 800,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            on: {
+                init: function () { 
+                    document.getElementById('total').innerText = this.slides.length - 2; 
+                },
+                slideChange: function () { 
+                    document.getElementById('curr').innerText = this.realIndex + 1; 
+                },
+            },
+        });
+
+        // Xử lý nút More
+        document.getElementById('btn-more').onclick = function() {
+            const box = document.getElementById('old-news-box');
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+                this.innerText = '▽ More ▽';
+            } else {
+                box.style.display = 'block';
+                this.innerText = '△ Show Less △';
+            }
+        };
+    </script>
+
+</body></html>
