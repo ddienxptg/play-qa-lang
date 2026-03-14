@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice - Play Together</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        /* KHAI BÁO FONT SRN COOKIERUN (Đảm bảo file nằm cùng thư mục) */
+        @font-face {
+            font-family: 'CookieRun';
+            src: url('SRN CookieRun Regular.ttf') format('truetype');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'CookieRun';
+            src: url('SRN CookieRun Bold.ttf') format('truetype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'CookieRun';
+            src: url('SRN CookieRun Black.ttf') format('truetype');
+            font-weight: 900;
+        }
+
+        body { 
+            background-color: #f8f9fa; 
+            margin: 0;
+            font-family: 'CookieRun', sans-serif; 
+            padding-top: 55px;
+        }
+
+        /* Navbar */
+        .navbar {
+            height: 50px;
+            background: #fff !important;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #555 !important;
+            font-size: 1.1rem;
+            margin: 0 auto;
+        }
+
+        /* Slider Wrapper */
+        .img-slide-wrapper { margin-top: 10px; max-width: 1140px; position: relative; }
+        .swiper { overflow: hidden; position: relative; }
+        .swiper-slide { position: relative; display: block; text-decoration: none; }
+        .swiper-slide img { width: 100%; display: block; }
+
+        /* --- TAGS (BADGE): CHỮ VÀNG THUẦN, KHÔNG BÓNG ĐEN --- */
+        .hg-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 6px 22px;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FFEB3B; /* Chữ vàng chuẩn */
+            z-index: 10;
+        }
+        .hg-badge.event { background-color: #A331FB; } /* Tím */
+        .hg-badge.new { background-color: #4CAF50; }   /* Xanh lá */
+        .hg-badge.sale { background-color: #FF3B30; }  /* Đỏ */
+        .hg-badge.playpass { background-color: #2196F3; } /* Xanh dương */
+
+        /* --- DẢI ĐEN MỜ (GRADIENT) CHO TIÊU ĐỀ --- */
+        .title-area {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px 25px 30px 25px;
+            color: white;
+            pointer-events: none;
+        }
+
+        /* VIỀN ĐEN CHO TIÊU ĐỀ CHÍNH */
+        .swiper-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+            line-height: 1.1;
+        }
+        .swiper-sub-title {
+            font-size: 15px;
+            font-weight: normal;
+            margin-top: 5px;
+            text-shadow: 1px 1px 2px #000;
+            max-width: 80%;
+        }
+
+        /* Nút Đi Ngay */
+        .sudo-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 25px;
+            background: #fff;
+            color: #333;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 18px;
+            box-shadow: 0 4px 0 #999;
+            z-index: 20;
+            text-decoration: none;
+        }
+
+        .slide-counter {
+            position: absolute; top: 15px; right: 15px; z-index: 10;
+            background: rgba(0,0,0,0.6); color: white;
+            padding: 4px 15px; border-radius: 20px; font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* News List */
+        .list-group-item {
+            padding: 15px 20px;
+            font-size: 15px;
+            border-left: none; border-right: none;
+            color: #333; text-decoration: none;
+        }
+        .list-group-item:hover { background: #f1f1f1; }
+        .text-body-secondary { font-size: 13px; color: #aaa !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-light fixed-top">
+        <span class="navbar-brand">Notice</span>
+    </nav>
+
+    <div class="container-lg img-slide-wrapper">
+        <div class="swiper" id="img-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="hg-badge event">EVENT</div>
+                    <img src="https://cdn.playtogether.haegin.co.kr/prod/1770189056_19adf1ad90cb4ac6820157eb0a14b77b">
+                    <div class="title-area">
+                        <h1 class="swiper-title">Sự kiện tiên hoa</h1>
+                        <h2 class="swiper-sub-title">Phép thuật của tiên hoa đã bùng nổ khắp đảo Kaia!</h2>
+                    </div>
+                    <div class="sudo-btn">ĐI NGAY</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="hg-badge new">NEW</div>
+                    <img src="https://cdn.playtogether.haegin.co.kr/prod/1771477682_c973a16027f14417b1c199989298abb0">
+                    <div class="title-area">
+                        <h1 class="swiper-title">Bốc thăm Bướm sao xanh</h1>
+                        <h2 class="swiper-sub-title">Bướm xanh huyền bí sẽ dẫn đường cho bạn.</h2>
+                    </div>
+                    <div class="sudo-btn">ĐI NGAY</div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="hg-badge sale">SALE</div>
+                    <img src="https://cdn.playtogether.haegin.co.kr/prod/1771478491_36093cc9459d4f6997f0808451fd238e">
+                    <div class="title-area">
+                        <h1 class="swiper-title">Cơ hội đặc biệt cuối tuần</h1>
+                        <h2 class="swiper-sub-title">Giảm giá cực sốc nhiều vật phẩm giới hạn chỉ trong tuần này!</h2>
+                    </div>
+                    <div class="sudo-btn">ĐI NGAY</div>
+                </div>
+            </div>
+            <div class="slide-counter"><span id="curr">1</span> / <span id="total">3</span></div>
+        </div>
+    </div>
+
+    <main class="container-lg pb-5 mt-2">
+        <div class="list-group list-group-flush border-bottom">
+            <a href="#" class="list-group-item d-flex justify-content-between">
+                <div>[Sự kiện] Thông báo thay đổi phần thưởng rương vàng</div>
+                <small class="text-body-secondary">2026-03-13(UTC)</small>
+            </a>
+            <div class="list-group-item text-center text-secondary" style="cursor: pointer;">▽ More ▽</div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            on: {
+                init: function () { 
+                    document.getElementById('total').innerText = this.slides.length - 2; 
+                },
+                slideChange: function () { 
+                    document.getElementById('curr').innerText = this.realIndex + 1; 
+                },
+            },
+        });
+    </script>
+</body>
+</html>
