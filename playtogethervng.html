@@ -5,16 +5,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <style>
-        /* Font chữ - Đảm bảo file font nằm cùng thư mục */
         @font-face {
             font-family: 'CookieRun';
             src: url('SRN CookieRun Regular.ttf') format('truetype');
             font-weight: normal;
-        }
-        @font-face {
-            font-family: 'CookieRun';
-            src: url('SRN CookieRun Black.ttf') format('truetype');
-            font-weight: 900;
         }
 
         body { 
@@ -25,47 +19,63 @@
             overflow-x: hidden;
         }
 
-        .navbar { height: 50px; background: #fff !important; border-bottom: 1px solid #dee2e6; display: flex; justify-content: center; }
+        .navbar { 
+            height: 50px; 
+            background: #fff !important; 
+            border-bottom: 1px solid #dee2e6; 
+            display: flex; 
+            justify-content: center; 
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
         .navbar-brand { font-weight: bold; color: #555 !important; font-size: 1.1rem; margin: 0 auto; }
 
-        /* Khung Slide */
-        .img-slide-wrapper { margin-top: 10px; width: 100%; max-width: 1140px; position: relative; }
-        .swiper { width: 100%; border-radius: 0; background: #eee; }
-        .swiper-slide { position: relative; overflow: hidden; display: block; text-decoration: none; }
-        .swiper-slide img { width: 100%; height: auto; display: block; }
-
-        /* Badge */
-        .hg-badge {
-            position: absolute; top: 0; left: 0; padding: 5px 15px;
-            font-weight: 900; font-size: clamp(14px, 4vw, 20px); color: #FFEB3B; z-index: 10;
-        }
-        .hg-badge.event { background-color: #A331FB; }
-
-        /* Khu vực Text */
-        .title-area {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 50px 15px 25px 15px; /* Tăng padding bottom để tránh đè nút */
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%);
-            pointer-events: none;
-            z-index: 5;
-        }
-        .swiper-title {
-            font-size: clamp(18px, 5.5vw, 28px); font-weight: 900; margin: 0; color: #fff;
-            text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000;
-            line-height: 1.2;
-        }
-        .swiper-sub-title { 
-            font-size: clamp(12px, 3.8vw, 15px); margin-top: 5px; color: #fff; 
-            text-shadow: 1px 1px 2px #000; opacity: 0.95;
-            padding-right: 90px; /* Không cho text tràn vào chỗ của nút */
+        /* --- CHỈNH SỬA KHUNG SLIDE ĐỂ TRÁNH LỘ KHOẢNG TRẮNG --- */
+        .img-slide-wrapper { 
+            margin: 10px auto 0; /* Căn giữa wrapper */
+            width: 100%; 
+            max-width: 1140px; 
+            position: relative; 
+            background-color: #fff; /* Màu nền lấp đầy khi zoom */
+            overflow: hidden;
         }
 
-        /* Nút Đi Ngay */
+        .swiper { 
+            width: 100%; 
+            height: auto;
+        }
+
+        .swiper-slide { 
+            position: relative; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+
+        .swiper-slide img { 
+            width: 100%; 
+            height: auto; 
+            display: block;
+            object-fit: cover; /* Đảm bảo ảnh luôn lấp đầy slide */
+        }
+
+        /* Nút Đi Ngay - Đặt cố định trong từng slide */
         .sudo-btn {
-            position: absolute; bottom: 20px; right: 15px; 
-            background: #fff; color: #333; padding: 6px 18px; 
-            border-radius: 30px; font-weight: 900; font-size: clamp(13px, 3vw, 16px); 
-            box-shadow: 0 4px 0 #999; z-index: 20; text-decoration: none;
+            position: absolute; 
+            bottom: 20px; 
+            right: 15px; 
+            background: #fff; 
+            color: #333; 
+            padding: 8px 20px; 
+            border-radius: 30px; 
+            font-weight: 900; 
+            font-size: clamp(13px, 3vw, 16px); 
+            box-shadow: 0 4px 0 #999; 
+            z-index: 20; 
+            text-decoration: none !important;
         }
 
         .slide-counter {
@@ -75,66 +85,72 @@
         }
 
         /* Danh sách tin tức */
-        .list-group-item { padding: 15px 20px; font-size: 15px; color: #333; text-decoration: none; }
+        .list-group-item { padding: 15px 20px; font-size: 15px; color: #333; text-decoration: none; border-bottom: 1px solid #eee; }
+        .list-group-item:last-child { border-bottom: none; }
         .list-group-item div { font-weight: bold; margin-bottom: 2px; }
         .old-news { display: none; }
-        #btn-more { cursor: pointer; font-weight: bold; text-align: center; color: #888; background: #f9f9f9; border-top: 1px solid #eee; }
+        #btn-more { cursor: pointer; font-weight: bold; text-align: center; color: #888; background: #f9f9f9; width: 100%; }
     </style>
-<style id="_goober"> .go1475592160{height:0;}.go1671063245{height:auto;}.go1888806478{display:flex;flex-wrap:wrap;flex-grow:1;}@media (min-width:600px){.go1888806478{flex-grow:initial;min-width:288px;}}.go167266335{background-color:#313131;font-size:0.875rem;line-height:1.43;letter-spacing:0.01071em;color:#fff;align-items:center;padding:6px 16px;border-radius:4px;box-shadow:0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);}.go3162094071{padding-left:20px;}.go3844575157{background-color:#313131;}.go1725278324{background-color:#43a047;}.go3651055292{background-color:#d32f2f;}.go4215275574{background-color:#ff9800;}.go1930647212{background-color:#2196f3;}.go946087465{display:flex;align-items:center;padding:8px 0;}.go703367398{display:flex;align-items:center;margin-left:auto;padding-left:16px;margin-right:-8px;}.go3963613292{width:100%;position:relative;transform:translateX(0);top:0;right:0;bottom:0;left:0;min-width:288px;}.go1141946668{box-sizing:border-box;display:flex;max-height:100%;position:fixed;z-index:1400;height:auto;width:auto;transition:top 300ms ease 0ms,right 300ms ease 0ms,bottom 300ms ease 0ms,left 300ms ease 0ms,max-width 300ms ease 0ms;pointer-events:none;max-width:calc(100% - 40px);}.go1141946668 .notistack-CollapseWrapper{padding:6px 0px;transition:padding 300ms ease 0ms;}@media (max-width:599.95px){.go1141946668{width:100%;max-width:calc(100% - 32px);}}.go3868796639 .notistack-CollapseWrapper{padding:2px 0px;}.go3118922589{top:14px;flex-direction:column;}.go1453831412{bottom:14px;flex-direction:column-reverse;}.go4027089540{left:20px;}@media (min-width:600px){.go4027089540{align-items:flex-start;}}@media (max-width:599.95px){.go4027089540{left:16px;}}.go2989568495{right:20px;}@media (min-width:600px){.go2989568495{align-items:flex-end;}}@media (max-width:599.95px){.go2989568495{right:16px;}}.go4034260886{left:50%;transform:translateX(-50%);}@media (min-width:600px){.go4034260886{align-items:center;}}</style></head>
-<body data-gptw="">
+</head>
+<body>
 
     <nav class="navbar navbar-light fixed-top">
         <span class="navbar-brand">TIN TỨC</span>
     </nav>
 
-    <div class="container-fluid p-0 img-slide-wrapper">
+    <div class="img-slide-wrapper">
         <div class="swiper swiper-initialized swiper-horizontal swiper-autoheight swiper-backface-hidden">
-            <div class="swiper-wrapper" id="swiper-wrapper-b78d322102eaf195d" aria-live="off" style="height: 465px; transform: translate3d(-827px, 0px, 0px); transition-duration: 0ms; transition-delay: 0ms;">
+            <div class="swiper-wrapper" id="swiper-wrapper-c6d49b23789de729" aria-live="off" style="height: 604px; transform: translate3d(-5370px, 0px, 0px); transition-duration: 0ms; transition-delay: 0ms;">
                 
                 
                 
                 
-            <a href="#" class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 6" data-swiper-slide-index="0" style="width: 827px;">
-                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/gacha_red_dragon-1.png">
-                </a><a href="#" class="swiper-slide swiper-slide-active" role="group" aria-label="2 / 6" data-swiper-slide-index="1" style="width: 827px;">
-                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/package_vn_dress-1.png">
-                </a><a href="#" class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 6" data-swiper-slide-index="2" style="width: 827px;">
-                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/pass_rosegarden_invitation-1.png">
-                </a><a href="#" class="swiper-slide swiper-slide-next" role="group" aria-label="4 / 6" data-swiper-slide-index="3" style="width: 827px;">
-                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/pet-golem.png">
-                </a><a href="#" class="swiper-slide" role="group" aria-label="5 / 6" data-swiper-slide-index="4" style="width: 827px;">
-                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/gacha_sniper_deadeye-1.png">
-                </a><a href="#" class="swiper-slide" role="group" aria-label="6 / 6" data-swiper-slide-index="5" style="width: 827px;">
-                    <img src="https://ddienxptg.github.io/notice.ptgvng.com/Kaia_Island_artifacts-1.png">
-                        
-                    </a></div><a href="#" class="swiper-slide" role="group" aria-label="6 / 6" data-swiper-slide-index="5" style="width: 827px;">
-                    <div class="sudo-btn">ĐI NGAY</div>
-                </a>
-            <div class="slide-counter"><span id="curr">NaN</span> / <span id="total">6</span></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                
+                
+            <div class="swiper-slide swiper-slide-next" role="group" aria-label="4 / 6" data-swiper-slide-index="3" style="width: 1074px;">
+                    <a href="#" style="width: 100%;"><img src="https://ddienxptg.github.io/notice.ptgvng.com/pet-golem.png"></a>
+                    
+                </div><div class="swiper-slide" role="group" aria-label="5 / 6" data-swiper-slide-index="4" style="width: 1074px;">
+                    <a href="#" style="width: 100%;"><img src="https://ddienxptg.github.io/notice.ptgvng.com/gacha_sniper_deadeye-1.png"></a>
+                    
+                </div><div class="swiper-slide" role="group" aria-label="6 / 6" data-swiper-slide-index="5" style="width: 1074px;">
+                    <a href="#" style="width: 100%;"><img src="https://ddienxptg.github.io/notice.ptgvng.com/Kaia_Island_artifacts-1.png"></a>
+                    
+                </div><div class="swiper-slide" role="group" aria-label="1 / 6" data-swiper-slide-index="0" style="width: 1074px;">
+                    <a href="#" style="width: 100%;"><img src="https://ddienxptg.github.io/notice.ptgvng.com/gacha_red_dragon-1.png"></a>
+                    
+                </div><div class="swiper-slide swiper-slide-prev" role="group" aria-label="2 / 6" data-swiper-slide-index="1" style="width: 1074px;">
+                    <a href="#" style="width: 100%;"><img src="https://ddienxptg.github.io/notice.ptgvng.com/package_vn_dress-1.png"></a>
+                    
+                </div><div class="swiper-slide swiper-slide-active" role="group" aria-label="3 / 6" data-swiper-slide-index="2" style="width: 1074px;">
+                    <a href="#" style="width: 100%;"><img src="https://ddienxptg.github.io/notice.ptgvng.com/pass_rosegarden_invitation-1.png"></a>
+                    
+                </div></div>
+            <div class="slide-counter"><span id="curr">3</span> / <span id="total">6</span></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
     </div>
 
-    <main class="container-fluid p-0 pb-5 mt-2">
+    <main class="container-fluid p-0 pb-5 mt-2" style="max-width: 1140px; margin: 0 auto;">
         <div class="list-group list-group-flush border-bottom" id="news-container">
-            <a href="https://ddienxptg.github.io/notice.ptgvng.com/02-04.html" class="list-group-item">
+            <a href="https://ddienxptg.github.io/notice.ptgvng.com/15-04.html" class="list-group-item">
                 <div>[Sự kiện] Săn Kho Báu</div>
                 <small class="text-secondary">2026-04-11 (UTC +7)</small>
             </a>
             
-            <a href="https://ddienxptg.github.io/notice.ptgvng.com/02-04.html" class="list-group-item">
-                <div>[Sự kiện] Dragon Village V3</div>
-                <small class="text-secondary">2026-03-22 (UTC +7)</small>
-            </a>
-            
-            <a href="https://ddienxptg.github.io/notice.ptgvng.com/PTG%20X%20B%C3%BAn.html" class="list-group-item">
-                <div>[Sự kiện] Trường nhạc Rock &amp; Kỷ niệm 5 năm</div>
-                <small class="text-secondary">2026-03-14 (UTC +7)</small>
-            </a><div class="old-news" id="old-news-box">
+            <div class="old-news" id="old-news-box" style="display: none;">
+                <a href="https://ddienxptg.github.io/notice.ptgvng.com/02-04.html" class="list-group-item">
+                    <div>[Sự kiện] Dragon Village V3</div>
+                    <small class="text-secondary">2026-03-22 (UTC +7)</small>
+                </a>
+                <a href="https://ddienxptg.github.io/notice.ptgvng.com/PTG%20X%20B%C3%BAn.html" class="list-group-item">
+                    <div>[Sự kiện] Trường nhạc Rock &amp; Kỷ niệm 5 năm</div>
+                    <small class="text-secondary">2026-03-14 (UTC +7)</small>
+                </a>
                 <a href="#" class="list-group-item">
                     <div>[Sự kiện] GAMEVERSE 2026</div>
                     <small class="text-secondary">2026-03-01 (UTC +7)</small>
                 </a>
-                </div>
+            </div>
 
             <div class="list-group-item" id="btn-more">▽ More ▽</div>
         </div>
@@ -169,8 +185,5 @@
             }
         };
     </script>
-
-
-
 
 </body></html>
